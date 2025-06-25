@@ -15,14 +15,8 @@ $routes->get('dashboard/novoUsuario', 'Dashboard::novoUsuario');
 $routes->post('/auth/login', 'Auth::login');
 $routes->get('/auth/logout', 'Auth::logout');
 
-// Recuperação de senha
-$routes->get('/auth/recuperarSenha', 'Auth::recuperarSenha');
-$routes->post('/auth/verificarEmail', 'Auth::verificarEmail');
-$routes->post('/auth/novaSenha', 'Auth::novaSenha');
-
 // Dashboard (protegido com filtro)
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
-
 $routes->get('/dashboard/usuarios', 'Dashboard::usuarios');
 $routes->get('/dashboard/perfil', 'Dashboard::perfil');
 
@@ -35,8 +29,6 @@ $routes->post('veiculos/atualizar/(:num)', 'Veiculos::atualizar/$1');
 $routes->get('veiculos/detalhes/(:num)', 'Veiculos::detalhes/$1');
 $routes->post('veiculos/atualizarStatus/(:num)', 'Veiculos::atualizarStatus/$1');
 
-
-
 // Rotas para clientes
 $routes->get('/clientes', 'Clientes::index');
 $routes->get('/clientes/novo', 'Clientes::novo');
@@ -46,10 +38,10 @@ $routes->post('/clientes/atualizar/(:num)', 'Clientes::atualizar/$1');
 $routes->get('/clientes/detalhes/(:num)', 'Clientes::detalhes/$1');
 $routes->get('/clientes/confirmarExclusao/(:num)', 'Clientes::confirmarExclusao/$1');
 $routes->post('/clientes/excluir/(:num)', 'Clientes::excluir/$1');
-$routes->get('/clientes/editar/(:num)', 'Clientes::editar/$1');  // mostra o form
-$routes->post('/clientes/atualizar/(:num)', 'Clientes::atualizar/$1'); // processa a atualização
+$routes->get('/clientes/editar/(:num)', 'Clientes::editar/$1');  
+$routes->post('/clientes/atualizar/(:num)', 'Clientes::atualizar/$1'); 
 $routes->get('clientes/desativar/(:num)', 'Clientes::desativar/$1');
-
+$routes->post('dashboard/criarUsuario', 'Dashboard::criarUsuario');
 
 // Rotas para locações
 $routes->get('/locacoes', 'Locacoes::index');
@@ -63,5 +55,5 @@ $routes->post('/locacoes/cancelar/(:num)', 'Locacoes::cancelar/$1');
 $routes->get('locacoes/getValorDiaria', 'Locacoes::getValorDiaria');
 
 
-$routes->post('dashboard/criarUsuario', 'Dashboard::criarUsuario');
+
 
