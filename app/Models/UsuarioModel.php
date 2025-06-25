@@ -30,14 +30,9 @@ class UsuarioModel extends Model
 
     public function verificarCredenciais($email, $senha)
 {
-    // Exemplo simplificado
     $usuario = $this->where('email', $email)
-                    ->where('senha', $senha)  // Atenção: se a senha estiver com hash, tem que validar com password_verify
+                    ->where('senha', $senha) 
                     ->first();
-
-    // Debug: veja o que está retornando
-    var_dump($usuario);
-    exit;
 
     return $usuario;
 }
@@ -58,7 +53,6 @@ public function buscarComFiltros(array $filtros = [])
         $builder->where('nivel_acesso', $filtros['nivel_acesso']);
     }
 
-    // 'ativo' pode ser zero ou um, então teste assim:
     if (isset($filtros['ativo']) && $filtros['ativo'] !== '') {
         $builder->where('ativo', $filtros['ativo']);
     }
