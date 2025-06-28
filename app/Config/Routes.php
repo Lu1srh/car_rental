@@ -44,15 +44,25 @@ $routes->get('clientes/desativar/(:num)', 'Clientes::desativar/$1');
 $routes->post('dashboard/criarUsuario', 'Dashboard::criarUsuario');
 
 // Rotas para locações
-$routes->get('/locacoes', 'Locacoes::index');
-$routes->get('/locacoes/nova', 'Locacoes::nova');
+$routes->get('locacoes', 'Locacoes::index');
+$routes->get('locacoes/nova', 'Locacoes::nova');
 $routes->post('locacoes/criar', 'Locacoes::criar');
-$routes->get('/locacoes/detalhes/(:num)', 'Locacoes::detalhes/$1');
-$routes->get('/locacoes/devolucao/(:num)', 'Locacoes::devolucao/$1');
-$routes->post('/locacoes/processarDevolucao/(:num)', 'Locacoes::processarDevolucao/$1');
-$routes->get('/locacoes/confirmarCancelamento/(:num)', 'Locacoes::confirmarCancelamento/$1');
-$routes->post('/locacoes/cancelar/(:num)', 'Locacoes::cancelar/$1');
+$routes->get('locacoes/detalhes/(:num)', 'Locacoes::detalhes/$1');
+$routes->get('locacoes/devolucao/(:num)', 'Locacoes::devolucao/$1');
+$routes->post('locacoes/processarDevolucao/(:num)', 'Locacoes::processarDevolucao/$1');
+$routes->get('locacoes/confirmarCancelamento/(:num)', 'Locacoes::confirmarCancelamento/$1');
+$routes->post('locacoes/cancelar/(:num)', 'Locacoes::cancelar/$1');
+
+// Rotas AJAX para valores
 $routes->get('locacoes/getValorDiaria', 'Locacoes::getValorDiaria');
+$routes->get('locacoes/calcularValor', 'Locacoes::calcularValor');
+$routes->post('locacoes/processarDevolucao/(:num)', 'Locacoes::processarDevolucao/$1');
+
+
+
+
+
+
 
 
 

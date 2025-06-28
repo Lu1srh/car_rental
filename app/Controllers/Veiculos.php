@@ -46,14 +46,18 @@ class Veiculos extends BaseController
      * Exibe o formulário para criar um novo veículo
      */
     public function novo()
-    {
-        $data = [
-            'titulo' => 'Cadastrar Novo Veículo',
-            'categorias' => $this->categoriaModel->getDropdownList()
-        ];
-        
-        return view('veiculos/form', $data);
-    }
+{
+    $veiculos = $this->veiculoModel->findAll();
+
+    $data = [
+        'titulo' => 'Cadastrar Novo Veículo',
+        'categorias' => $this->categoriaModel->getDropdownList(),
+        'veiculos' => $veiculos,  // Adicionado aqui
+    ];
+
+    return view('veiculos/form', $data);
+}
+
     
     /**
      * Processa o formulário de criação de veículo

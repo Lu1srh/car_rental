@@ -86,9 +86,11 @@
                     <a href="<?= site_url('locacoes') ?>" class="btn btn-secondary me-2">
                         <i class="fas fa-times"></i> Cancelar
                     </a>
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-check-circle"></i> Confirmar Devolução
-                    </button>
+                    <form action="<?= site_url('locacoes/processarDevolucao/' . $locacao['id']) ?>" method="post">
+    <!-- campos -->
+    <button type="submit">Confirmar Devolução</button>
+</form>
+
                 </div>
             </form>
         </div>

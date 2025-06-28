@@ -31,7 +31,7 @@
                             <option value="">Selecione um cliente...</option>
                             <?php foreach ($clientes as $cliente): ?>
                                 <option value="<?= $cliente['id'] ?>" <?= old('cliente_id') == $cliente['id'] ? 'selected' : '' ?>>
-                                    <?= $cliente['nome'] ?> - CPF: <?= $cliente['cpf'] ?>
+                                    <?= esc($cliente['nome']) ?> - CPF: <?= esc($cliente['cpf']) ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -42,7 +42,7 @@
                             <option value="">Selecione um veículo...</option>
                             <?php foreach ($veiculos as $veiculo): ?>
                                 <option value="<?= $veiculo['id'] ?>" <?= old('veiculo_id') == $veiculo['id'] ? 'selected' : '' ?>>
-                                    <?= $veiculo['marca'] ?> <?= $veiculo['modelo'] ?> - Placa: <?= $veiculo['placa'] ?>
+                                    <?= esc($veiculo['marca']) ?> <?= esc($veiculo['modelo']) ?> - Placa: <?= esc($veiculo['placa']) ?>
                                 </option>
                             <?php endforeach; ?>
                         </select>
@@ -53,8 +53,6 @@
                     <div class="col-md-3">
                         <label for="categoria" class="form-label">Categoria</label>
                         <input type="text" class="form-control" id="categoria" readonly>
-                        <!-- Opcional: hidden para categoria se quiser enviar -->
-                        <!--<input type="hidden" id="categoria_hidden" name="categoria">-->
                     </div>
                     <div class="col-md-3">
                         <label for="valor_diaria" class="form-label">Valor da Diária (R$)</label>
@@ -103,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const dataDevolucaoInput = document.getElementById('data_devolucao_prevista');
     const valorTotalInput = document.getElementById('valor_total');
     
-    // Função para buscar valor da diária
     function buscarValorDiaria() {
         const veiculoId = veiculoSelect.value;
         if (!veiculoId) {
@@ -118,12 +115,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    categoriaInput.value = data.categoria;
-                    valorDiariaInput.value = parseFloat(data.valor_diaria).toFixed(2);
-                    valorDiariaHidden.value = data.valor_diaria;
+                    categoriaInput.value = data.categoria.nome;  
+                    valorDiariaInput.value = parseFloat(data.categoria.valor_diaria).toFixed(2);
+                    valorDiariaHidden.value = data.categoria.valor_diaria;
                     calcularValorTotal();
                 } else {
                     alert('Erro ao buscar valor da diária: ' + data.message);
+                    categoriaInput.value = '';
+                    valorDiariaInput.value = '';
+                    valorDiariaHidden.value = '';
+                    valorTotalInput.value = '';
                 }
             })
             .catch(error => {
@@ -131,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // Função para calcular valor total
     function calcularValorTotal() {
         const valorDiaria = valorDiariaHidden.value;
         const dataRetirada = dataRetiradaInput.value;
@@ -147,6 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.success) {
                     valorTotalInput.value = parseFloat(data.valor_total).toFixed(2);
+                } else {
+                    valorTotalInput.value = '';
                 }
             })
             .catch(error => {
@@ -154,17 +156,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // Eventos
     veiculoSelect.addEventListener('change', buscarValorDiaria);
     dataRetiradaInput.addEventListener('change', calcularValorTotal);
     dataDevolucaoInput.addEventListener('change', calcularValorTotal);
     
-    // Inicializar se já houver um veículo selecionado
     if (veiculoSelect.value) {
         buscarValorDiaria();
     }
     
-    // Validação do formulário
     document.getElementById('formLocacao').addEventListener('submit', function(e) {
         const dataRetirada = new Date(dataRetiradaInput.value);
         const dataDevolucao = new Date(dataDevolucaoInput.value);
