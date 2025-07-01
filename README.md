@@ -1,68 +1,102 @@
-# CodeIgniter 4 Application Starter
+# 🚗 Sistema Web de Locadora de Veículos
 
-## What is CodeIgniter?
+Este é um projeto web de gerenciamento de locações de veículos, desenvolvido com **PHP** utilizando o **framework CodeIgniter 4**, integrado com **MySQL** para persistência dos dados. A aplicação oferece uma interface moderna e funcional para administrar clientes, veículos, categorias, usuários e locações.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## ✨ Funcionalidades
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+✅ Cadastro, edição e exclusão de **clientes**  
+🚗 Gerenciamento completo de **veículos** com categorias e status  
+📁 Cadastro de **categorias de veículos** com valor da diária  
+📅 Registro de **locações** com cálculo automático de valor e status  
+🔐 Controle de **usuários** com níveis de acesso (admin e operador)  
+📈 Painel administrativo com **consultas e listagens** de dados  
+📦 Relacionamentos com **chaves estrangeiras** e integridade referencial  
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+---
 
-## Installation & updates
+## 🚀 Tecnologias Utilizadas
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+- **PHP 8.2+**
+- **CodeIgniter 4**
+- **MySQL / MariaDB**
+- **HTML5 / CSS3 / Bootstrap**
+- **JavaScript (interações simples)**
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+## 🗃️ Estrutura do Banco de Dados
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+As principais tabelas utilizadas no sistema são:
 
-## Important Change with index.php
+- `clientes`: cadastro de clientes  
+- `veiculos`: informações dos veículos disponíveis  
+- `categorias`: define o tipo de veículo e valor da diária  
+- `locacoes`: registra locações com datas, valores e status  
+- `usuarios`: gerenciamento de acesso ao sistema  
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+O arquivo `locadora_carros.sql` contém o **script completo** de criação e dados de exemplo para testes.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## 🛠 Como Rodar o Projeto
 
-## Repository Management
+1. Instale PHP, Composer e MySQL/MariaDB no seu ambiente.
+2. Clone este repositório:
+   ```bash
+   git clone <url-do-repo>
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+   Configure o banco de dados:
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+Crie o banco:
+CREATE DATABASE locadora_carros CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-## Server Requirements
+Configure o acesso ao banco no arquivo:
+app/Config/Database.php
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+Instale dependências:
+composer install
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Inicie o servidor de desenvolvimento:
+php spark serve
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+Acesse a aplicação:
+http://localhost:8080/
 
-Additionally, make sure that the following extensions are enabled in your PHP:
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+📂 Estrutura de Pastas
+pgsql
+Copy
+Edit
+locadora/
+├─ app/
+│  ├─ Controllers/
+│  │   ├─ Clientes.php
+│  │   ├─ Veiculos.php
+│  │   ├─ Locacoes.php
+│  │   └─ Usuarios.php
+│  ├─ Models/
+│  │   ├─ ClienteModel.php
+│  │   ├─ VeiculoModel.php
+│  │   ├─ LocacaoModel.php
+│  │   └─ UsuarioModel.php
+│  ├─ Views/
+│     ├─ clientes/
+│     ├─ veiculos/
+│     ├─ locacoes/
+│     └─ layout/
+├─ public/
+│  └─ index.php
+└─ locadora_carros.sql
+
+
+sql
+Copy
+Edit
+CALL TesteCargaLocacoes(1000);
+👥 Integrantes do Grupo
+Luis Ricardo Holscher
+Diego Rafael Muller
+Guilherme Massinhani De Souza
+
