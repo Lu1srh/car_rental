@@ -66,28 +66,25 @@ http://localhost:8080/
 
 
 📂 Estrutura de Pastas
-pgsql
-Copy
-Edit
 locadora/
 ├─ app/
-│  ├─ Controllers/
-│  │   ├─ Clientes.php
-│  │   ├─ Veiculos.php
-│  │   ├─ Locacoes.php
-│  │   └─ Usuarios.php
-│  ├─ Models/
-│  │   ├─ ClienteModel.php
-│  │   ├─ VeiculoModel.php
-│  │   ├─ LocacaoModel.php
-│  │   └─ UsuarioModel.php
-│  ├─ Views/
-│     ├─ clientes/
-│     ├─ veiculos/
-│     ├─ locacoes/
-│     └─ layout/
+│ ├─ Controllers/
+│ │ ├─ Clientes.php
+│ │ ├─ Veiculos.php
+│ │ ├─ Locacoes.php
+│ │ └─ Usuarios.php
+│ ├─ Models/
+│ │ ├─ ClienteModel.php
+│ │ ├─ VeiculoModel.php
+│ │ ├─ LocacaoModel.php
+│ │ └─ UsuarioModel.php
+│ ├─ Views/
+│ ├─ clientes/
+│ ├─ veiculos/
+│ ├─ locacoes/
+│ └─ layout/
 ├─ public/
-│  └─ index.php
+│ └─ index.php
 └─ locadora_carros.sql
 
 
